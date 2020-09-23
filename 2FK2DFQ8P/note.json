@@ -1,11 +1,11 @@
 {
   "paragraphs": [
     {
-      "text": "%md\n\nHello, Zeppelin!",
+      "text": "%md\n\nHello, Zeppelin!\nNice to meet you!",
       "user": "J3SUNG",
-      "dateUpdated": "2020-09-22 23:01:24.980",
+      "dateUpdated": "2020-09-23 00:08:00.255",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 4.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
@@ -27,7 +27,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eHello, Zeppelin!\u003c/p\u003e\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eHello, Zeppelin!\u003cbr/\u003eNice to meet you!\u003c/p\u003e\n\u003c/div\u003e"
           }
         ]
       },
@@ -35,17 +35,17 @@
       "jobName": "paragraph_1600840813242_1428805590",
       "id": "20200922-230013_279869500",
       "dateCreated": "2020-09-22 23:00:13.242",
-      "dateStarted": "2020-09-22 23:00:26.421",
-      "dateFinished": "2020-09-22 23:00:28.326",
+      "dateStarted": "2020-09-23 00:08:00.272",
+      "dateFinished": "2020-09-23 00:08:00.281",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%python\n\nlang \u003d \"Python\"\nprint(\"Hello, \" + lang)\n",
       "user": "J3SUNG",
-      "dateUpdated": "2020-09-22 23:00:51.604",
+      "dateUpdated": "2020-09-23 00:08:00.371",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 4.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
@@ -73,26 +73,26 @@
       "jobName": "paragraph_1600840826396_1271258469",
       "id": "20200922-230026_935223330",
       "dateCreated": "2020-09-22 23:00:26.396",
-      "dateStarted": "2020-09-22 23:00:51.638",
-      "dateFinished": "2020-09-22 23:00:53.954",
+      "dateStarted": "2020-09-23 00:08:00.391",
+      "dateFinished": "2020-09-23 00:08:00.402",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%python\n\nprint(\"language \u003d \" + lang)",
+      "text": "%python\n\nprint(\"language \u003d\u003d \" + lang)",
       "user": "J3SUNG",
-      "dateUpdated": "2020-09-22 23:01:22.169",
+      "dateUpdated": "2020-09-23 00:08:05.246",
       "config": {
-        "colWidth": 12.0,
+        "colWidth": 4.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true,
-          "completionSupport": false
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/markdown",
+        "editorMode": "ace/mode/python",
         "editorHide": false,
         "tableHide": false
       },
@@ -105,7 +105,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "language \u003d Python\n"
+            "data": "languagex \u003d\u003d Python\n"
           }
         ]
       },
@@ -113,25 +113,120 @@
       "jobName": "paragraph_1600840851604_563535790",
       "id": "20200922-230051_1388761410",
       "dateCreated": "2020-09-22 23:00:51.604",
-      "dateStarted": "2020-09-22 23:01:16.044",
-      "dateFinished": "2020-09-22 23:01:16.054",
+      "dateStarted": "2020-09-23 00:08:00.506",
+      "dateFinished": "2020-09-23 00:08:00.518",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%python\n",
+      "text": "%python\n\nlang \u003d \"Python!\"\nprint(\"Hello, \" + lang)\n",
       "user": "J3SUNG",
-      "dateUpdated": "2020-09-22 23:01:16.013",
-      "config": {},
+      "dateUpdated": "2020-09-23 00:08:17.715",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python",
+        "title": false,
+        "lineNumbers": false,
+        "tableHide": false,
+        "editorHide": false
+      },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Hello, Python!\n"
+          }
+        ]
       },
       "apps": [],
       "jobName": "paragraph_1600840876012_1370838665",
       "id": "20200922-230116_600254153",
       "dateCreated": "2020-09-22 23:01:16.012",
-      "status": "READY",
+      "dateStarted": "2020-09-23 00:08:17.732",
+      "dateFinished": "2020-09-23 00:08:17.742",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n\nlang \u003d \"Python\"\nprint(\"Hellox, \" + lang)\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-09-23 00:08:17.831",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python",
+        "title": false,
+        "lineNumbers": false,
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Hellox, Python\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600844805601_-490391083",
+      "id": "20200923-000645_1118825607",
+      "dateCreated": "2020-09-23 00:06:45.601",
+      "dateStarted": "2020-09-23 00:08:17.847",
+      "dateFinished": "2020-09-23 00:08:17.864",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-09-23 00:08:17.946",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1600844384723_772253023",
+      "id": "20200922-235944_687854561",
+      "dateCreated": "2020-09-22 23:59:44.723",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     }
   ],
