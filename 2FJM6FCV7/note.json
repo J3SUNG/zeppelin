@@ -480,7 +480,9 @@
     "spark:shared_process": []
   },
   "config": {
-    "isZeppelinNotebookCronEnable": false
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
   },
   "info": {}
 }
