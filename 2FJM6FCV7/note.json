@@ -1,0 +1,486 @@
+{
+  "paragraphs": [
+    {
+      "text": "val bankText \u003d sc.textFile(\"/mnt/c/Users/J3SUNG/Downloads/bank/bank-full.csv\")\r\n\r\ncase class Bank(age:Integer, job:String, marital : String, education : String, balance : Integer)\r\n\r\n// split each line, filter out header (starts with \"age\"), and map it into Bank case class\r\nval bank \u003d bankText.map(s\u003d\u003es.split(\";\")).filter(s\u003d\u003es(0)!\u003d\"\\\"age\\\"\").map(\r\n    s\u003d\u003eBank(s(0).toInt, \r\n            s(1).replaceAll(\"\\\"\", \"\"),\r\n            s(2).replaceAll(\"\\\"\", \"\"),\r\n            s(3).replaceAll(\"\\\"\", \"\"),\r\n            s(5).replaceAll(\"\\\"\", \"\").toInt\r\n        )\r\n)\r\n\r\n// convert to DataFrame and create temporal table\r\nbank.toDF().registerTempTable(\"bank\")",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:30.342",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\nimport sqlContext.implicits._\nbankText: org.apache.spark.rdd.RDD[String] \u003d /mnt/c/Users/J3SUNG/Downloads/bank/bank-full.csv MapPartitionsRDD[26] at textFile at \u003cconsole\u003e:21\ndefined class Bank\nbank: org.apache.spark.rdd.RDD[Bank] \u003d MapPartitionsRDD[29] at map at \u003cconsole\u003e:26\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600918582044_118357466",
+      "id": "20200923-203622_1123843213",
+      "dateCreated": "2020-09-23 20:36:22.044",
+      "dateStarted": "2020-12-01 13:43:30.378",
+      "dateFinished": "2020-12-01 13:43:32.345",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select age, count(1) from bank where age \u003c 30 group by age order by age",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:32.383",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "scatterChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "count(1)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count(1)",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tcount(1)\n18\t12\n19\t35\n20\t50\n21\t79\n22\t129\n23\t202\n24\t302\n25\t527\n26\t805\n27\t909\n28\t1038\n29\t1185\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600919194280_279288475",
+      "id": "20200923-204634_2031211948",
+      "dateCreated": "2020-09-23 20:46:34.280",
+      "dateStarted": "2020-12-01 13:43:32.443",
+      "dateFinished": "2020-12-01 13:43:33.927",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select age, count(1) from bank where age \u003c ${maxAge\u003d30} group by age order by age",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:33.944",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "count(1)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {
+          "maxAge": "26"
+        },
+        "forms": {
+          "maxAge": {
+            "type": "TextBox",
+            "name": "maxAge",
+            "defaultValue": "30",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tcount(1)\n18\t12\n19\t35\n20\t50\n21\t79\n22\t129\n23\t202\n24\t302\n25\t527\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600918630963_561141813",
+      "id": "20200923-203710_1617121729",
+      "dateCreated": "2020-09-23 20:37:10.963",
+      "dateStarted": "2020-12-01 13:43:33.995",
+      "dateFinished": "2020-12-01 13:43:35.297",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select age, count(1) from bank where marital\u003d\"${marital\u003dsingle,single|divorced|married}\" group by age order by age",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:35.396",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "count(1)": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "runOnSelectionChange": true,
+        "tableHide": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {
+          "marital": "single"
+        },
+        "forms": {
+          "marital": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "single"
+              },
+              {
+                "value": "divorced"
+              },
+              {
+                "value": "married"
+              }
+            ],
+            "name": "marital",
+            "defaultValue": "single",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tcount(1)\n18\t12\n19\t35\n20\t47\n21\t74\n22\t120\n23\t175\n24\t248\n25\t423\n26\t615\n27\t658\n28\t697\n29\t683\n30\t1012\n31\t1017\n32\t941\n33\t746\n34\t650\n35\t631\n36\t538\n37\t453\n38\t394\n39\t346\n40\t257\n41\t241\n42\t218\n43\t183\n44\t170\n45\t146\n46\t130\n47\t100\n48\t124\n49\t101\n50\t76\n51\t72\n52\t62\n53\t71\n54\t55\n55\t54\n56\t45\n57\t38\n58\t35\n59\t36\n60\t27\n61\t5\n63\t2\n66\t5\n67\t3\n68\t4\n69\t2\n70\t1\n71\t1\n72\t5\n73\t2\n77\t1\n83\t2\n86\t1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600918700467_-1430103930",
+      "id": "20200923-203820_2126930656",
+      "dateCreated": "2020-09-23 20:38:20.467",
+      "dateStarted": "2020-12-01 13:43:35.424",
+      "dateFinished": "2020-12-01 13:43:37.140",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\r\nselect  \r\n  ${checkbox:fields\u003dage|job|marital|education|balance,age|job|marital|education|balance} \r\nfrom \r\n  bank\r\nlimit \r\n  100",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:37.226",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "age": "string",
+                      "job": "string",
+                      "marital": "string",
+                      "education": "string",
+                      "balance": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "runOnSelectionChange": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {
+          "fields": [
+            "age",
+            "job",
+            "marital",
+            "education",
+            "balance"
+          ]
+        },
+        "forms": {
+          "fields": {
+            "type": "CheckBox",
+            "options": [
+              {
+                "value": "age"
+              },
+              {
+                "value": "job"
+              },
+              {
+                "value": "marital"
+              },
+              {
+                "value": "education"
+              },
+              {
+                "value": "balance"
+              }
+            ],
+            "name": "fields",
+            "defaultValue": [
+              "age",
+              "job",
+              "marital",
+              "education",
+              "balance"
+            ],
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tjob\tmarital\teducation\tbalance\n58\tmanagement\tmarried\ttertiary\t2143\n44\ttechnician\tsingle\tsecondary\t29\n33\tentrepreneur\tmarried\tsecondary\t2\n47\tblue-collar\tmarried\tunknown\t1506\n33\tunknown\tsingle\tunknown\t1\n35\tmanagement\tmarried\ttertiary\t231\n28\tmanagement\tsingle\ttertiary\t447\n42\tentrepreneur\tdivorced\ttertiary\t2\n58\tretired\tmarried\tprimary\t121\n43\ttechnician\tsingle\tsecondary\t593\n41\tadmin.\tdivorced\tsecondary\t270\n29\tadmin.\tsingle\tsecondary\t390\n53\ttechnician\tmarried\tsecondary\t6\n58\ttechnician\tmarried\tunknown\t71\n57\tservices\tmarried\tsecondary\t162\n51\tretired\tmarried\tprimary\t229\n45\tadmin.\tsingle\tunknown\t13\n57\tblue-collar\tmarried\tprimary\t52\n60\tretired\tmarried\tprimary\t60\n33\tservices\tmarried\tsecondary\t0\n28\tblue-collar\tmarried\tsecondary\t723\n56\tmanagement\tmarried\ttertiary\t779\n32\tblue-collar\tsingle\tprimary\t23\n25\tservices\tmarried\tsecondary\t50\n40\tretired\tmarried\tprimary\t0\n44\tadmin.\tmarried\tsecondary\t-372\n39\tmanagement\tsingle\ttertiary\t255\n52\tentrepreneur\tmarried\tsecondary\t113\n46\tmanagement\tsingle\tsecondary\t-246\n36\ttechnician\tsingle\tsecondary\t265\n57\ttechnician\tmarried\tsecondary\t839\n49\tmanagement\tmarried\ttertiary\t378\n60\tadmin.\tmarried\tsecondary\t39\n59\tblue-collar\tmarried\tsecondary\t0\n51\tmanagement\tmarried\ttertiary\t10635\n57\ttechnician\tdivorced\tsecondary\t63\n25\tblue-collar\tmarried\tsecondary\t-7\n53\ttechnician\tmarried\tsecondary\t-3\n36\tadmin.\tdivorced\tsecondary\t506\n37\tadmin.\tsingle\tsecondary\t0\n44\tservices\tdivorced\tsecondary\t2586\n50\tmanagement\tmarried\tsecondary\t49\n60\tblue-collar\tmarried\tunknown\t104\n54\tretired\tmarried\tsecondary\t529\n58\tretired\tmarried\tunknown\t96\n36\tadmin.\tsingle\tprimary\t-171\n58\tself-employed\tmarried\ttertiary\t-364\n44\ttechnician\tmarried\tsecondary\t0\n55\ttechnician\tdivorced\tsecondary\t0\n29\tmanagement\tsingle\ttertiary\t0\n54\tblue-collar\tmarried\tsecondary\t1291\n48\tmanagement\tdivorced\ttertiary\t-244\n32\tmanagement\tmarried\ttertiary\t0\n42\tadmin.\tsingle\tsecondary\t-76\n24\ttechnician\tsingle\tsecondary\t-103\n38\tentrepreneur\tsingle\ttertiary\t243\n38\tmanagement\tsingle\ttertiary\t424\n47\tblue-collar\tmarried\tunknown\t306\n40\tblue-collar\tsingle\tunknown\t24\n46\tservices\tmarried\tprimary\t179\n32\tadmin.\tmarried\ttertiary\t0\n53\ttechnician\tdivorced\tsecondary\t989\n57\tblue-collar\tmarried\tprimary\t249\n33\tservices\tmarried\tsecondary\t790\n49\tblue-collar\tmarried\tunknown\t154\n51\tmanagement\tmarried\ttertiary\t6530\n60\tretired\tmarried\ttertiary\t100\n59\tmanagement\tdivorced\ttertiary\t59\n55\ttechnician\tmarried\tsecondary\t1205\n35\tblue-collar\tsingle\tsecondary\t12223\n57\tblue-collar\tmarried\tsecondary\t5935\n31\tservices\tmarried\tsecondary\t25\n54\tmanagement\tmarried\tsecondary\t282\n55\tblue-collar\tmarried\tprimary\t23\n43\ttechnician\tmarried\tsecondary\t1937\n53\ttechnician\tmarried\tsecondary\t384\n44\tblue-collar\tmarried\tsecondary\t582\n55\tservices\tdivorced\tsecondary\t91\n49\tservices\tdivorced\tsecondary\t0\n55\tservices\tdivorced\tsecondary\t1\n45\tadmin.\tsingle\tsecondary\t206\n47\tservices\tdivorced\tsecondary\t164\n42\ttechnician\tsingle\tsecondary\t690\n59\tadmin.\tmarried\tsecondary\t2343\n46\tself-employed\tmarried\ttertiary\t137\n51\tblue-collar\tmarried\tprimary\t173\n56\tadmin.\tmarried\tsecondary\t45\n41\ttechnician\tmarried\tsecondary\t1270\n46\tmanagement\tdivorced\tsecondary\t16\n57\tretired\tmarried\tsecondary\t486\n42\tmanagement\tsingle\tsecondary\t50\n30\ttechnician\tmarried\tsecondary\t152\n60\tadmin.\tmarried\tsecondary\t290\n60\tblue-collar\tmarried\tunknown\t54\n57\tentrepreneur\tdivorced\tsecondary\t-37\n36\tmanagement\tmarried\ttertiary\t101\n55\tblue-collar\tmarried\tsecondary\t383\n60\tretired\tmarried\ttertiary\t81\n39\ttechnician\tmarried\tsecondary\t0\n46\tmanagement\tmarried\ttertiary\t229\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600919197968_-2093520377",
+      "id": "20200923-204637_1980306171",
+      "dateCreated": "2020-09-23 20:46:37.968",
+      "dateStarted": "2020-12-01 13:43:37.256",
+      "dateFinished": "2020-12-01 13:43:37.463",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:43:37.555",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1600919275776_547557423",
+      "id": "20200923-204755_660749394",
+      "dateCreated": "2020-09-23 20:47:55.777",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Tutorial2",
+  "id": "2FJM6FCV7",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
