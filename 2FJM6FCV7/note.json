@@ -1,6 +1,20 @@
 {
   "paragraphs": [
     {
+      "user": "J3SUNG",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1606952357286_1642998840",
+      "id": "20201202-153917_1792805858",
+      "dateCreated": "2020-12-02 15:39:17.286",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "val bankText \u003d sc.textFile(\"/mnt/c/Users/J3SUNG/Downloads/bank/bank-full.csv\")\r\n\r\ncase class Bank(age:Integer, job:String, marital : String, education : String, balance : Integer)\r\n\r\n// split each line, filter out header (starts with \"age\"), and map it into Bank case class\r\nval bank \u003d bankText.map(s\u003d\u003es.split(\";\")).filter(s\u003d\u003es(0)!\u003d\"\\\"age\\\"\").map(\r\n    s\u003d\u003eBank(s(0).toInt, \r\n            s(1).replaceAll(\"\\\"\", \"\"),\r\n            s(2).replaceAll(\"\\\"\", \"\"),\r\n            s(3).replaceAll(\"\\\"\", \"\"),\r\n            s(5).replaceAll(\"\\\"\", \"\").toInt\r\n        )\r\n)\r\n\r\n// convert to DataFrame and create temporal table\r\nbank.toDF().registerTempTable(\"bank\")",
       "user": "J3SUNG",
       "dateUpdated": "2020-12-01 13:43:30.342",
@@ -476,7 +490,6 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "python:shared_process": [],
     "spark:shared_process": []
   },
   "config": {
