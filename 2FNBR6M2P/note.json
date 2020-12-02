@@ -1,0 +1,255 @@
+{
+  "paragraphs": [
+    {
+      "user": "J3SUNG",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1606951967818_-1131181859",
+      "id": "20201202-153247_1668821484",
+      "dateCreated": "2020-12-02 15:32:47.818",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val studentText \u003d sc.textFile(\"/mnt/c/Users/J3SUNG/Downloads/zeppelin/test_csv_file.csv\")\r\n\r\ncase class Student(no:Integer, name:String, age:Integer, gender:String)\r\n\r\n// split each line, filter out header (starts with \"age\"), and map it into Bank case class\r\nval student \u003d studentText.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003es(0)!\u003d\"\\\"no\\\"\").map(\r\n    s\u003d\u003eStudent(s(0).toInt, \r\n            s(1).replaceAll(\"\\\"\", \"\"),\r\n            s(2).toInt,\r\n            s(3).replaceAll(\"\\\"\", \"\")\r\n        )\r\n)\r\n\r\n// convert to DataFrame and create temporal table\r\nstudent.toDF().registerTempTable(\"student\")",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:04:42.074",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\nimport sqlContext.implicits._\nstudentText: org.apache.spark.rdd.RDD[String] \u003d /mnt/c/Users/J3SUNG/Downloads/zeppelin/test_csv_file.csv MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:16\ndefined class Student\nstudent: org.apache.spark.rdd.RDD[Student] \u003d MapPartitionsRDD[4] at map at \u003cconsole\u003e:21\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600919821318_-1476805365",
+      "id": "20200923-205701_190219826",
+      "dateCreated": "2020-09-23 20:57:01.318",
+      "dateStarted": "2020-12-01 13:04:42.137",
+      "dateFinished": "2020-12-01 13:04:46.020",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql select * from student",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-01 13:04:48.405",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": true,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "no",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "name",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "age",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "gender",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "no": "string",
+                      "name": "string",
+                      "age": "string",
+                      "gender": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "age",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "gender",
+                  "index": 3.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "age",
+                  "index": 2.0,
+                  "aggr": "count"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": false,
+        "editorHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "no\tname\tage\tgender\n1\tJeseong\t26\tM\n2\tSeonghyun\t26\tM\n3\tSeeun\t23\tW\n4\tNamgung\t25\tW\n5\tMinsu\t24\tM\n6\tJolly\t22\tW\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1600920511940_-1363667575",
+      "id": "20200923-210831_868295786",
+      "dateCreated": "2020-09-23 21:08:31.940",
+      "dateStarted": "2020-12-01 13:04:48.458",
+      "dateFinished": "2020-12-01 13:04:49.384",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-09-23 21:08:53.121",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1600920533121_1205544171",
+      "id": "20200923-210853_820309991",
+      "dateCreated": "2020-09-23 21:08:53.121",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Tutorial3",
+  "id": "2FNBR6M2P",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
