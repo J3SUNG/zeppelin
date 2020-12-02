@@ -1,0 +1,71 @@
+{
+  "paragraphs": [
+    {
+      "text": "%python\n\nprint(\"git test\")\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-02 15:40:54.077",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "git test\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1606952416032_742524249",
+      "id": "20201202-154016_1121536150",
+      "dateCreated": "2020-12-02 15:40:16.032",
+      "dateStarted": "2020-12-02 15:40:54.101",
+      "dateFinished": "2020-12-02 15:41:00.357",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n",
+      "user": "J3SUNG",
+      "dateUpdated": "2020-12-02 15:40:54.080",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1606952454079_1295928052",
+      "id": "20201202-154054_77288810",
+      "dateCreated": "2020-12-02 15:40:54.079",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "git test file",
+  "id": "2FSHQ7P8Q",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
