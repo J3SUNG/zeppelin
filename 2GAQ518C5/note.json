@@ -1,0 +1,386 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\r\nimport org.apache.spark.sql._\r\nval driver \u003d\"com.sap.db.jdbc.Driver\"\r\nval url\u003d\"jdbc:sap://11.1.88.110:30015/tri\"\r\nval database   \u003d \"database schema\"   \r\nval username   \u003d \"username for the database\"\r\nval password   \u003d \"the Password for the database\"\r\nval table_view \u003d \"event_view\"\r\nvar box\u003d\"\"\r\nval jdbcDF \u003d sqlContext.read.format(\"jdbc\").option(\"driver\",driver)\r\n                                           .option(\"url\",url)\r\n                                           .option(\"databaseName\", database)\r\n                                           .option(\"dbtable\", \"event_view\")\r\n                                           .option(\"user\", username)\r\n                                           .option(\"password\",password)\r\n                                           .option(\"dbtable\", table_view).load()\r\njdbcDF.createOrReplaceTempView(\"event_view\")",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:35:28.649",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.ClassNotFoundException: com.sap.db.jdbc.Driver\n  at scala.reflect.internal.util.AbstractFileClassLoader.findClass(AbstractFileClassLoader.scala:62)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.jdbc.DriverRegistry$.register(DriverRegistry.scala:38)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions$$anonfun$6.apply(JDBCOptions.scala:78)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions$$anonfun$6.apply(JDBCOptions.scala:78)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions.\u003cinit\u003e(JDBCOptions.scala:78)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions.\u003cinit\u003e(JDBCOptions.scala:34)\n  at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:34)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:307)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:146)\n  ... 47 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623636872302_641342873",
+      "id": "20210613-191432_128069100",
+      "dateCreated": "2021-06-13 19:14:32.302",
+      "dateStarted": "2021-06-13 19:35:28.665",
+      "dateFinished": "2021-06-13 19:35:29.954",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular \r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n.\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            //geoMarkers.clearLayers();\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n            });\r\n        })\r\n    });\r\n}\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:37:34.752",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n.\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            //geoMarkers.clearLayers();\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n            });\r\n        })\r\n    });\r\n}\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638128649_2013710745",
+      "id": "20210613-193528_827427093",
+      "dateCreated": "2021-06-13 19:35:28.649",
+      "dateStarted": "2021-06-13 19:37:34.752",
+      "dateFinished": "2021-06-13 19:37:34.784",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\r\nz.angularBind(\"box\", box)\r\n// Get the bounding box\r\nz.angularWatch(\"box\", (oldValue: Object, newValue: Object) \u003d\u003e {\r\n    println(s\"value changed from $oldValue to $newValue\")\r\n    box \u003d newValue.asInstanceOf[String]\r\n})\r\n\r\nvar sql1 \u003d \"select comments desc, lat, lng from EVENT_VIEW \"\r\nif (box.length \u003e 0) {\r\n    var coords \u003d box.split(\",\")\r\n    sql1 \u003d sql1 + \" where lng  \u003e \" + coords(0).toFloat + \" and lat \u003e \" +  coords(1).toFloat + \" and lng \u003c \" + coords(2).toFloat + \" and lat \u003c \" +  coords(3).toFloat\r\n}\r\nvar sql \u003d sql1 +\" limit 20\" \r\n\r\nval map_pings \u003d jdbcDF.sqlContext.sql(sql)\r\nz.angularBind(\"locations\", map_pings.collect())\r\nz.angularBind(\"paragraph\", z.getInterpreterContext().getParagraphId())\r\nz.run(\"20171127-081000_380354042\") // put the paragraph id for your angular paragraph here",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:36:07.656",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:39: error: not found: value jdbcDF\n       val map_pings \u003d jdbcDF.sqlContext.sql(sql)\n                       ^\n\u003cconsole\u003e:25: error: not found: value box\n       z.angularBind(\"box\", box)\n                            ^\n\u003cconsole\u003e:29: error: not found: value box\n           box \u003d newValue.asInstanceOf[String]\n           ^\n\u003cconsole\u003e:33: error: not found: value box\n       if (box.length \u003e 0) {\n           ^\n\u003cconsole\u003e:34: error: not found: value box\n           var coords \u003d box.split(\",\")\n                        ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638149261_-1103032525",
+      "id": "20210613-193549_1098253333",
+      "dateCreated": "2021-06-13 19:35:49.261",
+      "dateStarted": "2021-06-13 19:36:07.681",
+      "dateFinished": "2021-06-13 19:36:07.818",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular \r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css\" /\u003e\r\n.\r\n\u003cscript src\u003d\u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js\u0027\u003e\u003c/script\u003e\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    var drawnItems \u003d new L.FeatureGroup();\r\n    \r\n    map.addLayer(drawnItems);\r\n    \r\n    var drawControl \u003d new L.Control.Draw({\r\n        draw: {\r\n             polygon: false,\r\n             marker: false,\r\n             polyline: false\r\n        },\r\n        edit: {\r\n            featureGroup: drawnItems\r\n        }\r\n    });\r\n    map.addControl(drawControl);\r\n    \r\n    map.on(\u0027draw:created\u0027, function (e) {\r\n        var type \u003d e.layerType;\r\n        var layer \u003d e.layer;\r\n        drawnItems.addLayer(layer);\r\n        element.val(layer.getBounds().toBBoxString());\r\n        map.fitBounds(layer.getBounds());\r\n        window.setTimeout(function(){\r\n           //Triggers Angular to do its thing with changed model values\r\n           element.trigger(\u0027input\u0027);\r\n        }, 500);\r\n    });\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            $scope.latlng \u003d [];\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n                  $scope.latlng.push(L.latLng(event.values[1], event.values[2]));\r\n            });\r\n            var bounds \u003d L.latLngBounds($scope.latlng)\r\n            map.fitBounds(bounds)\r\n        })\r\n    });\r\n\r\n}\r\n\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n    s2.onload \u003d initMap;\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:36:33.643",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css\" /\u003e\r\n.\r\n\u003cscript src\u003d\u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js\u0027\u003e\u003c/script\u003e\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    var drawnItems \u003d new L.FeatureGroup();\r\n    \r\n    map.addLayer(drawnItems);\r\n    \r\n    var drawControl \u003d new L.Control.Draw({\r\n        draw: {\r\n             polygon: false,\r\n             marker: false,\r\n             polyline: false\r\n        },\r\n        edit: {\r\n            featureGroup: drawnItems\r\n        }\r\n    });\r\n    map.addControl(drawControl);\r\n    \r\n    map.on(\u0027draw:created\u0027, function (e) {\r\n        var type \u003d e.layerType;\r\n        var layer \u003d e.layer;\r\n        drawnItems.addLayer(layer);\r\n        element.val(layer.getBounds().toBBoxString());\r\n        map.fitBounds(layer.getBounds());\r\n        window.setTimeout(function(){\r\n           //Triggers Angular to do its thing with changed model values\r\n           element.trigger(\u0027input\u0027);\r\n        }, 500);\r\n    });\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            $scope.latlng \u003d [];\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n                  $scope.latlng.push(L.latLng(event.values[1], event.values[2]));\r\n            });\r\n            var bounds \u003d L.latLngBounds($scope.latlng)\r\n            map.fitBounds(bounds)\r\n        })\r\n    });\r\n\r\n}\r\n\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n    s2.onload \u003d initMap;\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638167656_888305956",
+      "id": "20210613-193607_318467977",
+      "dateCreated": "2021-06-13 19:36:07.656",
+      "dateStarted": "2021-06-13 19:36:33.643",
+      "dateFinished": "2021-06-13 19:36:33.650",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "from bokeh.io import output_notebook, show\r\nfrom bokeh.plotting import figure\r\n\r\noutput_notebook()\r\n\r\n# create a new plot \r\np \u003d figure(plot_width\u003d400, plot_height\u003d400, title\u003d\"Simple Line Plot\")\r\n\r\n# add a line renderer\r\np.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width\u003d2)\r\n\r\nshow(p) # show the results",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:40:12.909",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: \u0027;\u0027 expected but \u0027.\u0027 found.\nfrom bokeh.io import output_notebook, show\n          ^\n\u003cconsole\u003e:2: error: \u0027;\u0027 expected but \u0027.\u0027 found.\nfrom bokeh.plotting import figure\n          ^\n\u003cconsole\u003e:6: error: \u0027;\u0027 expected but \u0027#\u0027 found.\n# create a new plot\n^\n\u003cconsole\u003e:9: error: \u0027;\u0027 expected but \u0027#\u0027 found.\n# add a line renderer\n^\n\u003cconsole\u003e:10: error: illegal start of simple expression\np.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width\u003d2)\n       ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638187396_208601684",
+      "id": "20210613-193627_91898161",
+      "dateCreated": "2021-06-13 19:36:27.396",
+      "dateStarted": "2021-06-13 19:40:12.909",
+      "dateFinished": "2021-06-13 19:40:12.944",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "starsbokeh.render (p, title\u003d\"Choropleth Example\")",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:41:39.778",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:24: error: not found: value starsbokeh\n       starsbokeh.render (p, title\u003d\"Choropleth Example\")\n       ^\n\u003cconsole\u003e:24: error: not found: value p\n       starsbokeh.render (p, title\u003d\"Choropleth Example\")\n                          ^\n\u003cconsole\u003e:24: error: not found: value title\n       starsbokeh.render (p, title\u003d\"Choropleth Example\")\n                             ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638412890_-699614298",
+      "id": "20210613-194012_1665073468",
+      "dateCreated": "2021-06-13 19:40:12.890",
+      "dateStarted": "2021-06-13 19:41:39.801",
+      "dateFinished": "2021-06-13 19:41:39.839",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "from lightning import Lightning\r\n \r\nclass StarsLightning (object):\r\n    def __init__(self, host\u003d\"https://stars-lightning.renci.org\"):\r\n        self.host \u003d host\r\n        self.service \u003d Lightning(host\u003dself.host)\r\n    def render (self, vis, width\u003d400, height\u003d300):\r\n        print (\u0027\\n%html \u003ciframe src\u003d\"{0}/visualizations/{1}/iframe\" width\u003d\"{2}\" height\u003d\"{3}\" \u003e\u0027.format (self.host, vis.id, width, height))\r\n         \r\nstarlight \u003d StarsLightning ()",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:42:17.229",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: \u0027;\u0027 expected but \u0027import\u0027 found.\nfrom lightning import Lightning\n               ^\n\u003cconsole\u003e:3: error: identifier expected but \u0027object\u0027 found.\nclass StarsLightning (object):\n                      ^\n\u003cconsole\u003e:8: error: unclosed character literal\n        print (\u0027\\n%html \u003ciframe src\u003d\"{0}/visualizations/{1}/iframe\" width\u003d\"{2}\" height\u003d\"{3}\" \u003e\u0027.format (self.host, vis.id, width, height))\n               ^\n\u003cconsole\u003e:8: error: unclosed character literal\n        print (\u0027\\n%html \u003ciframe src\u003d\"{0}/visualizations/{1}/iframe\" width\u003d\"{2}\" height\u003d\"{3}\" \u003e\u0027.format (self.host, vis.id, width, height))\n                                                                                              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638499778_1125215697",
+      "id": "20210613-194139_249366842",
+      "dateCreated": "2021-06-13 19:41:39.778",
+      "dateStarted": "2021-06-13 19:42:17.252",
+      "dateFinished": "2021-06-13 19:42:17.265",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import os\r\nimport uuid\r\nfrom bokeh.plotting import figure, output_file, show\r\nclass StarsBokeh(object):\r\n    def __init__(self, data_dir\u003d\"/\u003cdata-path\u003e/bokeh\"):\r\n        self.data_dir \u003d data_dir\r\n    def output_file (self, file_name, title\u003d\"Title\"):\r\n        output_file (os.path.join (self.data_dir, file_name), title\u003dtitle)\r\n    def show (self, p, file_name):\r\n        show (p)\r\n        path \u003d os.path.join (self.data_dir, file_name)\r\n        print (\"\\n%html {0}\".format (open(path).read ()))\r\n    def render (self, p, title\u003d\"Title\"):\r\n        out_file \u003d \"vis-{0}\".format (uuid.uuid1())\r\n        print (out_file)\r\n        self.output_file (out_file, title\u003dtitle)\r\n        print (\"wrote\")\r\n        self.show (p, out_file)\r\nstarsbokeh \u003d StarsBokeh ()",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:42:28.812",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:2: error: \u0027.\u0027 expected but \u0027;\u0027 found.\nimport uuid\n^\n\u003cconsole\u003e:3: error: \u0027.\u0027 expected but \u0027;\u0027 found.\nfrom bokeh.plotting import figure, output_file, show\n^\n\u003cconsole\u003e:3: error: \u0027;\u0027 expected but \u0027.\u0027 found.\nfrom bokeh.plotting import figure, output_file, show\n          ^\n\u003cconsole\u003e:4: error: identifier expected but \u0027object\u0027 found.\nclass StarsBokeh(object):\n                 ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638537229_102403660",
+      "id": "20210613-194217_467710806",
+      "dateCreated": "2021-06-13 19:42:17.229",
+      "dateStarted": "2021-06-13 19:42:28.858",
+      "dateFinished": "2021-06-13 19:42:28.873",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%knitr echo\u003dF,results\u003d\u0027asis\u0027, message\u003dF, warning\u003dF\nlibrary(googleVis)\ndata(Exports)\nnp \u003c- options(gvis.plot.tag\u003d\"chart\")\nGeo \u003d gvisGeoChart(Exports, locationvar \u003d \u0027Country\u0027,colorvar\u003d\"Porfit\", options\u003dlist(projection\u003d\u0027kavrayskiy-vil\u0027))\nplot(Geo)",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 19:54:18.816",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: expected start of definition\n@knitr echo\u003dF,results\u003d\u0027asis\u0027, message\u003dF, warning\u003dF\n       ^\n\u003cconsole\u003e:1: error: unclosed character literal\n@knitr echo\u003dF,results\u003d\u0027asis\u0027, message\u003dF, warning\u003dF\n                           ^\n\u003cconsole\u003e:4: error: \u0027;\u0027 expected but \u0027\u003c-\u0027 found.\nnp \u003c- options(gvis.plot.tag\u003d\"chart\")\n   ^\n\u003cconsole\u003e:5: error: unclosed character literal\nGeo \u003d gvisGeoChart(Exports, locationvar \u003d \u0027Country\u0027,colorvar\u003d\"Porfit\", options\u003dlist(projection\u003d\u0027kavrayskiy-vil\u0027))\n                                                  ^\n\u003cconsole\u003e:5: error: unclosed character literal\nGeo \u003d gvisGeoChart(Exports, locationvar \u003d \u0027Country\u0027,colorvar\u003d\"Porfit\", options\u003dlist(projection\u003d\u0027kavrayskiy-vil\u0027))\n                                                                                                              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623638548812_931973747",
+      "id": "20210613-194228_1501179103",
+      "dateCreated": "2021-06-13 19:42:28.812",
+      "dateStarted": "2021-06-13 19:53:59.217",
+      "dateFinished": "2021-06-13 19:53:59.231",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "J3SUNG",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1623639239188_-2049681173",
+      "id": "20210613-195359_447435286",
+      "dateCreated": "2021-06-13 19:53:59.188",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "map_test",
+  "id": "2GAQ518C5",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
