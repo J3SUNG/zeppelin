@@ -2,8 +2,8 @@
   "paragraphs": [
     {
       "text": "%spark\r\nimport org.apache.spark.sql._\r\nval driver \u003d\"com.sap.db.jdbc.Driver\"\r\nval url\u003d\"jdbc:sap://11.1.88.110:30015/tri\"\r\nval database   \u003d \"database schema\"   \r\nval username   \u003d \"username for the database\"\r\nval password   \u003d \"the Password for the database\"\r\nval table_view \u003d \"event_view\"\r\nvar box\u003d\"\"\r\nval jdbcDF \u003d sqlContext.read.format(\"jdbc\").option(\"driver\",driver)\r\n                                           .option(\"url\",url)\r\n                                           .option(\"databaseName\", database)\r\n                                           .option(\"dbtable\", \"event_view\")\r\n                                           .option(\"user\", username)\r\n                                           .option(\"password\",password)\r\n                                           .option(\"dbtable\", table_view).load()\r\njdbcDF.createOrReplaceTempView(\"event_view\")",
-      "user": "J3SUNG",
-      "dateUpdated": "2021-06-13 19:35:28.649",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-17 00:42:36.913",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -34,15 +34,15 @@
       "jobName": "paragraph_1623636872302_641342873",
       "id": "20210613-191432_128069100",
       "dateCreated": "2021-06-13 19:14:32.302",
-      "dateStarted": "2021-06-13 19:35:28.665",
-      "dateFinished": "2021-06-13 19:35:29.954",
+      "dateStarted": "2021-06-17 00:42:37.074",
+      "dateFinished": "2021-06-17 00:42:48.905",
       "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%angular \r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n.\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            //geoMarkers.clearLayers();\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n            });\r\n        })\r\n    });\r\n}\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e",
       "user": "J3SUNG",
-      "dateUpdated": "2021-06-13 19:37:34.752",
+      "dateUpdated": "2021-06-13 23:39:36.279",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -53,8 +53,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -73,8 +73,8 @@
       "jobName": "paragraph_1623638128649_2013710745",
       "id": "20210613-193528_827427093",
       "dateCreated": "2021-06-13 19:35:28.649",
-      "dateStarted": "2021-06-13 19:37:34.752",
-      "dateFinished": "2021-06-13 19:37:34.784",
+      "dateStarted": "2021-06-13 23:22:35.481",
+      "dateFinished": "2021-06-13 23:22:35.489",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -120,7 +120,7 @@
     {
       "text": "%angular \r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css\" /\u003e\r\n\u003clink rel\u003d\"stylesheet\" href\u003d\"https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css\" /\u003e\r\n.\r\n\u003cscript src\u003d\u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js\u0027\u003e\u003c/script\u003e\r\n\u003cdiv id\u003d\"map\" style\u003d\"height: 300px; width: 100%\"\u003e\u003c/div\u003e\r\n\r\n\u003cscript type\u003d\"text/javascript\"\u003e\r\nfunction initMap() {\r\n    var element \u003d $(\u0027#textbox\u0027);\r\n    var map \u003d L.map(\u0027map\u0027).setView([30.00, -30.00], 3);\r\n   \r\n    L.tileLayer(\u0027http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\u0027).addTo(map);\r\n    var geoMarkers \u003d L.layerGroup().addTo(map);\r\n    var drawnItems \u003d new L.FeatureGroup();\r\n    \r\n    map.addLayer(drawnItems);\r\n    \r\n    var drawControl \u003d new L.Control.Draw({\r\n        draw: {\r\n             polygon: false,\r\n             marker: false,\r\n             polyline: false\r\n        },\r\n        edit: {\r\n            featureGroup: drawnItems\r\n        }\r\n    });\r\n    map.addControl(drawControl);\r\n    \r\n    map.on(\u0027draw:created\u0027, function (e) {\r\n        var type \u003d e.layerType;\r\n        var layer \u003d e.layer;\r\n        drawnItems.addLayer(layer);\r\n        element.val(layer.getBounds().toBBoxString());\r\n        map.fitBounds(layer.getBounds());\r\n        window.setTimeout(function(){\r\n           //Triggers Angular to do its thing with changed model values\r\n           element.trigger(\u0027input\u0027);\r\n        }, 500);\r\n    });\r\n    \r\n    var el \u003d angular.element($(\u0027#map\u0027).parent(\u0027.ng-scope\u0027));\r\n    var $scope \u003d el.scope().compiledScope;\r\n   \r\n    angular.element(el).ready(function() {\r\n        window.locationWatcher \u003d $scope.$watch(\u0027locations\u0027, function(newValue, oldValue) {\r\n            $scope.latlng \u003d [];\r\n            angular.forEach(newValue, function(event) {\r\n                if (event)\r\n                  var marker \u003d L.marker([event.values[1], event.values[2]]).bindPopup(event.values[0]).addTo(geoMarkers);\r\n                  $scope.latlng.push(L.latLng(event.values[1], event.values[2]));\r\n            });\r\n            var bounds \u003d L.latLngBounds($scope.latlng)\r\n            map.fitBounds(bounds)\r\n        })\r\n    });\r\n\r\n}\r\n\r\nif (window.locationWatcher) { window.locationWatcher(); }\r\n\r\n// ensure we only load the script once, seems to cause issues otherwise\r\nif (window.L) {\r\n    initMap();\r\n} else {\r\n    console.log(\u0027Loading Leaflet library\u0027);\r\n    var sc \u003d document.createElement(\u0027script\u0027);\r\n    sc.type \u003d \u0027text/javascript\u0027;\r\n    sc.src \u003d \u0027https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js\u0027;\r\n    sc.onerror \u003d function(err) { alert(err); }\r\n    document.getElementsByTagName(\u0027head\u0027)[0].appendChild(sc);\r\n    s2.onload \u003d initMap;\r\n}\r\n\u003c/script\u003e\r\n\u003cp\u003eTesting the Map\u003c/p\u003e\r\n\r\n\u003cform class\u003d\"form-inline\"\u003e\r\n  \u003cdiv class\u003d\"form-group\"\u003e\r\n    \u003cinput id\u003d\"textbox\" ng-model\u003d\"box\" data-ng-change\u003d\"z.runParagraph(paragraph);\"\u003e\u003c/input\u003e\r\n    \u003clabel for\u003d\"paragraphId\"\u003eParagraph Id: \u003c/label\u003e\r\n    \u003cinput type\u003d\"text\" class\u003d\"form-control\" id\u003d\"paragraphId\" placeholder\u003d\"Paragraph Id ...\" ng-model\u003d\"paragraph\"\u003e\u003c/input\u003e\r\n  \u003c/div\u003e\r\n  \u003cbutton type\u003d\"submit\" class\u003d\"btn btn-primary\" ng-click\u003d\"z.runParagraph(paragraph)\"\u003e Run Paragraph\u003c/button\u003e\r\n\u003c/form\u003e",
       "user": "J3SUNG",
-      "dateUpdated": "2021-06-13 19:36:33.643",
+      "dateUpdated": "2021-06-17 00:45:04.690",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -133,8 +133,8 @@
           "completionSupport": false
         },
         "editorMode": "ace/mode/undefined",
-        "editorHide": true,
-        "tableHide": false
+        "editorHide": false,
+        "tableHide": true
       },
       "settings": {
         "params": {},
@@ -342,7 +342,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "\u003cconsole\u003e:1: error: expected start of definition\n@knitr echo\u003dF,results\u003d\u0027asis\u0027, message\u003dF, warning\u003dF\n       ^\n\u003cconsole\u003e:1: error: unclosed character literal\n@knitr echo\u003dF,results\u003d\u0027asis\u0027, message\u003dF, warning\u003dF\n                           ^\n\u003cconsole\u003e:4: error: \u0027;\u0027 expected but \u0027\u003c-\u0027 found.\nnp \u003c- options(gvis.plot.tag\u003d\"chart\")\n   ^\n\u003cconsole\u003e:5: error: unclosed character literal\nGeo \u003d gvisGeoChart(Exports, locationvar \u003d \u0027Country\u0027,colorvar\u003d\"Porfit\", options\u003dlist(projection\u003d\u0027kavrayskiy-vil\u0027))\n                                                  ^\n\u003cconsole\u003e:5: error: unclosed character literal\nGeo \u003d gvisGeoChart(Exports, locationvar \u003d \u0027Country\u0027,colorvar\u003d\"Porfit\", options\u003dlist(projection\u003d\u0027kavrayskiy-vil\u0027))\n                                                                                                              ^\n"
+            "data": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named knitr or it is not binded to this note"
           }
         ]
       },
@@ -353,6 +353,200 @@
       "dateStarted": "2021-06-13 19:53:59.217",
       "dateFinished": "2021-06-13 19:53:59.231",
       "status": "ERROR",
+      "errorMessage": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named knitr or it is not binded to this note\n\tat org.apache.zeppelin.interpreter.InterpreterFactory.getInterpreter(InterpreterFactory.java:101)\n\tat org.apache.zeppelin.notebook.Paragraph.getBindedInterpreter(Paragraph.java:243)\n\tat org.apache.zeppelin.notebook.Paragraph.execute(Paragraph.java:351)\n\tat org.apache.zeppelin.notebook.Note.run(Note.java:683)\n\tat org.apache.zeppelin.socket.NotebookServer.persistAndExecuteSingleParagraph(NotebookServer.java:1881)\n\tat org.apache.zeppelin.socket.NotebookServer.runParagraph(NotebookServer.java:1840)\n\tat org.apache.zeppelin.socket.NotebookServer.onMessage(NotebookServer.java:262)\n\tat org.apache.zeppelin.socket.NotebookSocket.onWebSocketText(NotebookSocket.java:59)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextMessage(JettyListenerEventDriver.java:189)\n\tat org.eclipse.jetty.websocket.common.message.SimpleTextMessage.messageComplete(SimpleTextMessage.java:69)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.appendMessage(AbstractEventDriver.java:66)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextFrame(JettyListenerEventDriver.java:158)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.incomingFrame(AbstractEventDriver.java:162)\n\tat org.eclipse.jetty.websocket.common.WebSocketSession.incomingFrame(WebSocketSession.java:459)\n\tat org.eclipse.jetty.websocket.common.extensions.AbstractExtension.nextIncomingFrame(AbstractExtension.java:182)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.nextIncomingFrame(PerMessageDeflateExtension.java:105)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.CompressExtension.forwardIncoming(CompressExtension.java:142)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.incomingFrame(PerMessageDeflateExtension.java:85)\n\tat org.eclipse.jetty.websocket.common.extensions.ExtensionStack.incomingFrame(ExtensionStack.java:220)\n\tat org.eclipse.jetty.websocket.common.Parser.notifyFrame(Parser.java:219)\n\tat org.eclipse.jetty.websocket.common.Parser.parse(Parser.java:244)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.readParse(AbstractWebSocketConnection.java:559)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.onFillable(AbstractWebSocketConnection.java:390)\n\tat org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)\n\tat org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)\n\tat org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)\n\tat org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n\nimport pandas as pd\nurl \u003d \"httpss://data.cambridgema.gov/resource/v43b-kqeq.csv\"\ndata \u003d pd.read_csv(url)\ndata.head()",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 20:10:24.267",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)\n\u001b[0;32m\u003cipython-input-3-03f1d6381a9c\u003e\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0;31m \u001b[0;32mimport\u001b[0m \u001b[0mpandas\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0murl\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0;34m\"httpss://data.cambridgema.gov/resource/v43b-kqeq.csv\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0mdata\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0murl\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhead\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mModuleNotFoundError\u001b[0m: No module named \u0027pandas\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623639239188_-2049681173",
+      "id": "20210613-195359_447435286",
+      "dateCreated": "2021-06-13 19:53:59.188",
+      "dateStarted": "2021-06-13 20:10:24.293",
+      "dateFinished": "2021-06-13 20:10:24.427",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n!pip install pandas",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 20:14:48.231",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[33mThe directory \u0027/home/j3sung/.cache/pip/http\u0027 or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo\u0027s -H flag.\u001b[0m\r\n\u001b[33mThe directory \u0027/home/j3sung/.cache/pip\u0027 or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo\u0027s -H flag.\u001b[0m\r\nRequirement already satisfied: pandas in /usr/local/lib/python3.7/dist-packages\r\nRequirement already satisfied: numpy\u003e\u003d1.16.5 in ./.local/lib/python3.7/site-packages (from pandas)\r\nRequirement already satisfied: pytz\u003e\u003d2017.3 in /usr/local/lib/python3.7/dist-packages (from pandas)\r\nRequirement already satisfied: python-dateutil\u003e\u003d2.7.3 in ./.local/lib/python3.7/site-packages (from pandas)\r\nRequirement already satisfied: six\u003e\u003d1.5 in ./.local/lib/python3.7/site-packages (from python-dateutil\u003e\u003d2.7.3-\u003epandas)\r\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623640224267_-2036584286",
+      "id": "20210613-201024_2029589389",
+      "dateCreated": "2021-06-13 20:10:24.267",
+      "dateStarted": "2021-06-13 20:14:48.256",
+      "dateFinished": "2021-06-13 20:14:49.694",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n\nimport pandas as pd\nurl \u003d \"httpss://data.cambridgema.gov/resource/v43b-kqeq.csv\"\ndata \u003d pd.read_csv(url)\ndata.head()",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 20:14:53.161",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mImportError\u001b[0m                               Traceback (most recent call last)\n\u001b[0;32m\u003cipython-input-7-03f1d6381a9c\u003e\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mpandas\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0murl\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0;34m\"httpss://data.cambridgema.gov/resource/v43b-kqeq.csv\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----\u003e 3\u001b[0;31m \u001b[0mdata\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0murl\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m \u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhead\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36mread_csv\u001b[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)\u001b[0m\n\u001b[1;32m    608\u001b[0m     \u001b[0mkwds\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mupdate\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkwds_defaults\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    609\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 610\u001b[0;31m     \u001b[0;32mreturn\u001b[0m \u001b[0m_read\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    611\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    612\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m_read\u001b[0;34m(filepath_or_buffer, kwds)\u001b[0m\n\u001b[1;32m    460\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    461\u001b[0m     \u001b[0;31m# Create the parser.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 462\u001b[0;31m     \u001b[0mparser\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mTextFileReader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    463\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    464\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0mchunksize\u001b[0m \u001b[0;32mor\u001b[0m \u001b[0miterator\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, f, engine, **kwds)\u001b[0m\n\u001b[1;32m    817\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"has_index_names\"\u001b[0m\u001b[0;34m]\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"has_index_names\"\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    818\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 819\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_make_engine\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mengine\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    820\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    821\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0mclose\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m_make_engine\u001b[0;34m(self, engine)\u001b[0m\n\u001b[1;32m   1048\u001b[0m             )\n\u001b[1;32m   1049\u001b[0m         \u001b[0;31m# error: Too many arguments for \"ParserBase\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-\u003e 1050\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mmapping\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mengine\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mf\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[0;34m)\u001b[0m  \u001b[0;31m# type: ignore[call-arg]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1051\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1052\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0m_failover_to_python\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, src, **kwds)\u001b[0m\n\u001b[1;32m   1865\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1866\u001b[0m         \u001b[0;31m# open handles\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-\u003e 1867\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_open_handles\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0msrc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1868\u001b[0m         \u001b[0;32massert\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhandles\u001b[0m \u001b[0;32mis\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1869\u001b[0m         \u001b[0;32mfor\u001b[0m \u001b[0mkey\u001b[0m \u001b[0;32min\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0;34m\"storage_options\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"encoding\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"memory_map\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"compression\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m_open_handles\u001b[0;34m(self, src, kwds)\u001b[0m\n\u001b[1;32m   1366\u001b[0m             \u001b[0mcompression\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"compression\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1367\u001b[0m             \u001b[0mmemory_map\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"memory_map\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;32mFalse\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-\u003e 1368\u001b[0;31m             \u001b[0mstorage_options\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"storage_options\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1369\u001b[0m         )\n\u001b[1;32m   1370\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/common.py\u001b[0m in \u001b[0;36mget_handle\u001b[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)\u001b[0m\n\u001b[1;32m    561\u001b[0m         \u001b[0mcompression\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mcompression\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    562\u001b[0m         \u001b[0mmode\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mmode\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 563\u001b[0;31m         \u001b[0mstorage_options\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mstorage_options\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    564\u001b[0m     )\n\u001b[1;32m    565\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/io/common.py\u001b[0m in \u001b[0;36m_get_filepath_or_buffer\u001b[0;34m(filepath_or_buffer, encoding, compression, mode, storage_options)\u001b[0m\n\u001b[1;32m    313\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstartswith\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"s3n://\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    314\u001b[0m             \u001b[0mfilepath_or_buffer\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mreplace\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"s3n://\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"s3://\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 315\u001b[0;31m         \u001b[0mfsspec\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mimport_optional_dependency\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"fsspec\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    316\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    317\u001b[0m         \u001b[0;31m# If botocore is installed we fallback to reading with anon\u003dTrue\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/dist-packages/pandas/compat/_optional.py\u001b[0m in \u001b[0;36mimport_optional_dependency\u001b[0;34m(name, extra, raise_on_missing, on_version)\u001b[0m\n\u001b[1;32m    107\u001b[0m     \u001b[0;32mexcept\u001b[0m \u001b[0mImportError\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    108\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mraise_on_missing\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 109\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mImportError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmsg\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    110\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    111\u001b[0m             \u001b[0;32mreturn\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mImportError\u001b[0m: Missing optional dependency \u0027fsspec\u0027.  Use pip or conda to install fsspec."
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623640418299_-1321686575",
+      "id": "20210613-201338_1310561826",
+      "dateCreated": "2021-06-13 20:13:38.299",
+      "dateStarted": "2021-06-13 20:14:53.182",
+      "dateFinished": "2021-06-13 20:14:53.250",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%mysql\nselect * from ",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 20:21:04.054",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named mysql or it is not binded to this note"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623640458683_-786443311",
+      "id": "20210613-201418_1532428351",
+      "dateCreated": "2021-06-13 20:14:18.683",
+      "status": "ERROR",
+      "errorMessage": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named mysql or it is not binded to this note\n\tat org.apache.zeppelin.interpreter.InterpreterFactory.getInterpreter(InterpreterFactory.java:101)\n\tat org.apache.zeppelin.notebook.Paragraph.getBindedInterpreter(Paragraph.java:243)\n\tat org.apache.zeppelin.notebook.Paragraph.execute(Paragraph.java:351)\n\tat org.apache.zeppelin.notebook.Note.run(Note.java:683)\n\tat org.apache.zeppelin.socket.NotebookServer.persistAndExecuteSingleParagraph(NotebookServer.java:1881)\n\tat org.apache.zeppelin.socket.NotebookServer.runParagraph(NotebookServer.java:1840)\n\tat org.apache.zeppelin.socket.NotebookServer.onMessage(NotebookServer.java:262)\n\tat org.apache.zeppelin.socket.NotebookSocket.onWebSocketText(NotebookSocket.java:59)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextMessage(JettyListenerEventDriver.java:189)\n\tat org.eclipse.jetty.websocket.common.message.SimpleTextMessage.messageComplete(SimpleTextMessage.java:69)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.appendMessage(AbstractEventDriver.java:66)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextFrame(JettyListenerEventDriver.java:158)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.incomingFrame(AbstractEventDriver.java:162)\n\tat org.eclipse.jetty.websocket.common.WebSocketSession.incomingFrame(WebSocketSession.java:459)\n\tat org.eclipse.jetty.websocket.common.extensions.AbstractExtension.nextIncomingFrame(AbstractExtension.java:182)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.nextIncomingFrame(PerMessageDeflateExtension.java:105)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.CompressExtension.forwardIncoming(CompressExtension.java:142)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.incomingFrame(PerMessageDeflateExtension.java:85)\n\tat org.eclipse.jetty.websocket.common.extensions.ExtensionStack.incomingFrame(ExtensionStack.java:220)\n\tat org.eclipse.jetty.websocket.common.Parser.notifyFrame(Parser.java:219)\n\tat org.eclipse.jetty.websocket.common.Parser.parse(Parser.java:244)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.readParse(AbstractWebSocketConnection.java:559)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.onFillable(AbstractWebSocketConnection.java:390)\n\tat org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)\n\tat org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)\n\tat org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)\n\tat org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%mysql\nselect * from addresses;",
+      "user": "J3SUNG",
+      "dateUpdated": "2021-06-13 20:21:25.085",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named mysql or it is not binded to this note"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1623640574111_-2054745938",
+      "id": "20210613-201614_554093736",
+      "dateCreated": "2021-06-13 20:16:14.111",
+      "status": "ERROR",
+      "errorMessage": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: Either no interpreter named mysql or it is not binded to this note\n\tat org.apache.zeppelin.interpreter.InterpreterFactory.getInterpreter(InterpreterFactory.java:101)\n\tat org.apache.zeppelin.notebook.Paragraph.getBindedInterpreter(Paragraph.java:243)\n\tat org.apache.zeppelin.notebook.Paragraph.execute(Paragraph.java:351)\n\tat org.apache.zeppelin.notebook.Note.run(Note.java:683)\n\tat org.apache.zeppelin.socket.NotebookServer.persistAndExecuteSingleParagraph(NotebookServer.java:1881)\n\tat org.apache.zeppelin.socket.NotebookServer.runParagraph(NotebookServer.java:1840)\n\tat org.apache.zeppelin.socket.NotebookServer.onMessage(NotebookServer.java:262)\n\tat org.apache.zeppelin.socket.NotebookSocket.onWebSocketText(NotebookSocket.java:59)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextMessage(JettyListenerEventDriver.java:189)\n\tat org.eclipse.jetty.websocket.common.message.SimpleTextMessage.messageComplete(SimpleTextMessage.java:69)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.appendMessage(AbstractEventDriver.java:66)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextFrame(JettyListenerEventDriver.java:158)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.incomingFrame(AbstractEventDriver.java:162)\n\tat org.eclipse.jetty.websocket.common.WebSocketSession.incomingFrame(WebSocketSession.java:459)\n\tat org.eclipse.jetty.websocket.common.extensions.AbstractExtension.nextIncomingFrame(AbstractExtension.java:182)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.nextIncomingFrame(PerMessageDeflateExtension.java:105)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.CompressExtension.forwardIncoming(CompressExtension.java:142)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.incomingFrame(PerMessageDeflateExtension.java:85)\n\tat org.eclipse.jetty.websocket.common.extensions.ExtensionStack.incomingFrame(ExtensionStack.java:220)\n\tat org.eclipse.jetty.websocket.common.Parser.notifyFrame(Parser.java:219)\n\tat org.eclipse.jetty.websocket.common.Parser.parse(Parser.java:244)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.readParse(AbstractWebSocketConnection.java:559)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.onFillable(AbstractWebSocketConnection.java:390)\n\tat org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)\n\tat org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)\n\tat org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)\n\tat org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)\n\tat java.lang.Thread.run(Thread.java:748)\n",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -363,9 +557,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1623639239188_-2049681173",
-      "id": "20210613-195359_447435286",
-      "dateCreated": "2021-06-13 19:53:59.188",
+      "jobName": "paragraph_1623640885085_-431087961",
+      "id": "20210613-202125_1333282814",
+      "dateCreated": "2021-06-13 20:21:25.085",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
